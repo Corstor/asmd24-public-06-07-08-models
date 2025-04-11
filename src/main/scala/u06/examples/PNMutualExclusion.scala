@@ -15,9 +15,9 @@ object PNMutualExclusion:
 
   // DSL-like specification of a Petri Net
   def pnME = PetriNet[Place](
-    MSet(N) ~~> MSet(T),
-    MSet(T) ~~> MSet(C) ^^^ MSet(C),
-    MSet(C) ~~> MSet()
+    MSet(N) --> MSet(T),
+    MSet(T) --> MSet(C) --- MSet(C),
+    MSet(C) --> MSet()
   ).toSystem
 
 @main def mainPNMutualExclusion =

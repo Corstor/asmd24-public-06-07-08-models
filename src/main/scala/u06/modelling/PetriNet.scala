@@ -22,6 +22,6 @@ object PetriNet:
 
   // fancy syntax to create transition rules
   extension [P](self: Marking[P])
-    def ~~> (y: Marking[P]) = Trn(self, y, MSet())
+    def --> (y: Marking[P]) = Trn(self, y, MSet())
   extension [P](self: Trn[P])
-    def ^^^ (z: Marking[P]) = self.copy(inh = z)
+    def --- (z: Marking[P]) = self.copy(inh = z)
