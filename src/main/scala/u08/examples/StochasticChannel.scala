@@ -1,6 +1,6 @@
 package u08.examples
 
-import u08.modelling.CTMC
+import u07.modelling.CTMC
 
 object StochasticChannel:
   enum State:

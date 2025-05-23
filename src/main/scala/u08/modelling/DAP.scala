@@ -1,6 +1,7 @@
 package u08.modelling
 
 import java.util.Random
+import u07.modelling.CTMC
 import CTMC.*
 import scala.u08.utils.{Grids, MSet}
 
