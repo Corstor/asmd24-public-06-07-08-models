@@ -35,7 +35,7 @@ object Collector extends App:
     jumps = { case ((3, 4), _) => (0, 0); case ((1, 7), _) => (0, 0); case ((9, 9), _) => (0, 0); case ((6, 3), _) => (0, 0); },
     gamma = 0.9,
     alpha = 0.7,
-    epsilon = 0.7,
+    epsilon = 0.8,
     epsilonReducer = 0.00001,
     v0 = 1
   )
@@ -44,4 +44,4 @@ object Collector extends App:
   println(rl.show(q0.vFunction,"%2.2f"))
   val q1 = rl.makeLearningInstance().learn(30000,400,q0)
   println(rl.show(q1.vFunction,"%2.2f"))
-  println(rl.show(s => q1.bestPolicy(s).toString,"%7s"))
+  println(rl.show(s => q1.bestPolicy(s).toString,"%1s"))
