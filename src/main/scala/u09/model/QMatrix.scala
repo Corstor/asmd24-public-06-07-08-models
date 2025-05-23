@@ -20,6 +20,7 @@ object QMatrix:
                      gamma: Double,
                      alpha: Double,
                      epsilon: Double = 0.0,
+                     epsilonReducer: Double = 0.0,
                      v0: Double) extends QRLImpl:
     type State = Node
     type Action = Move
@@ -37,11 +38,11 @@ object QMatrix:
 
     def qFunction = QFunction(Move.values.toSet, v0, terminal)
     def qSystem = QSystem(environment = qEnvironment(), initial, terminal)
-    def makeLearningInstance() = QLearning(qSystem, gamma, alpha, epsilon, qFunction)
+    def makeLearningInstance() = QLearning(qSystem, gamma, alpha, epsilon, epsilonReducer, qFunction)
 
     def show[E](v: Node => E, formatString: String): String =
       (for
-        row <- 0 until width
-        col <- 0 until height
-      yield formatString.format(v((col, row))) + (if (col == height - 1) "\n" else "\t"))
+        row <- -1 until width
+        col <- -1 until height
+      yield if (col == -1) row.toString() + "\t" else if (row == -1) col.toString() + (if (col == height - 1) "\n" else "\t") else formatString.format(v((col, row))) + (if (col == height - 1) "\n" else "\t"))
         .mkString("")

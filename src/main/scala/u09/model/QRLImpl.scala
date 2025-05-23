@@ -49,7 +49,8 @@ trait QRLImpl extends QRL:
     override val system: QSystem,
     override val gamma: Double,
     override val alpha: Double,
-    override val epsilon: Double,
+    var epsilon: Double,
+    override val epsilonReducer: Double = 0.0,
     override val q0: Q) extends LearningProcess:
 
     override def updateQ(s: State, qf: Q): (State, Q) =
@@ -69,4 +70,7 @@ trait QRLImpl extends QRL:
 
       episodes match
         case 0 => qf
-        case e => learn(e - 1, length, runSingleEpisode((system.initial, qf), length)._2)
+        case e =>
+          epsilon = epsilon - epsilonReducer
+          epsilon = if epsilon < 0 then 0 else epsilon
+          learn(e - 1, length, runSingleEpisode((system.initial, qf), length)._2)

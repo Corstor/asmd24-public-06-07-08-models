@@ -45,6 +45,7 @@ trait QRL:
     def gamma: Double
     def alpha: Double
     def epsilon: Double
+    def epsilonReducer: Double
     def q0: Q
     def updateQ(s: State, qf: Q): (State, Q)
     def learn(episodes: Int, episodeLength: Int, qf: Q): Q
