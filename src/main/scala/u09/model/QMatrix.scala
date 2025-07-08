@@ -44,5 +44,5 @@ object QMatrix:
       (for
         row <- -1 until width
         col <- -1 until height
-      yield if (col == -1) row.toString() + "\t" else if (row == -1) col.toString() + (if (col == height - 1) "\n" else "\t") else formatString.format(v((col, row))) + (if (col == height - 1) "\n" else "\t"))
+      yield if col == -1 && row == -1 then "\t" else if col == -1 then row.toString() + "\t" else if row == -1 then col.toString() + (if col == height - 1 then "\n" else "\t") else formatString.format(v((col, row))) + (if col == height - 1 then "\n" else "\t"))
         .mkString("")
